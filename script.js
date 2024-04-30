@@ -1,15 +1,16 @@
 const input=document.querySelector("input");
 const Search=document.querySelector("button");
 const images=document.querySelector(".images");
-let nextpage=1;
-let total_page=5;
-
+let total_page=1;
+let current_page=0;
+let userinput="";
 async function Search_Images(input_data){
-   
+    userinput=input_data;
     try{
-    const response=await fetch(`https://api.unsplash.com/search/photos?client_id=tx34PiRZzp93-OoWeUZIbDD6e48QKr9utNKzmmbzWFU&query=${input_data}&page=1&per_page=12`);
+    const response=await fetch(`https://api.unsplash.com/search/photos?client_id=tx34PiRZzp93-OoWeUZIbDD6e48QKr9utNKzmmbzWFU&query=${input_data}&page=${current_page}&per_page=12`);
     const data=await response.json();
     const results=await data.results;
+    console.log(results);
     images.innerHTML="";
 
     results.forEach(element => {
@@ -51,29 +52,62 @@ async function Search_Images(input_data){
         });
 
     });
+    
+    total_page=data.total_pages;
+    Pagination();
 
-
-    if (total_page > nextpage) {
-        
-        const loadMoreButton = document.createElement("button");
-        loadMoreButton.innerText = "Load More";
-        loadMoreButton.addEventListener("click", () => {
-            nextpage++;
-            Search_Images(input_data);
-        });
-        images.appendChild(loadMoreButton);
-    }
     }catch(error){
        console.log(error);   
     }
     
 }
 
+function Pagination() {
+    // Clear existing pagination buttons
+    const paginationContainer = document.querySelector(".pagination");
+    paginationContainer.innerHTML = "";
+
+    // Render "Previous" button
+    if (current_page > 1) {
+        let prev = document.createElement("button");
+        prev.classList.add("prev");
+        prev.innerHTML = '<i class="fa-solid fa-backward"></i>';
+        prev.classList.add("prev");
+        prev.addEventListener("click", previousPage);
+        paginationContainer.appendChild(prev);
+    }
+
+    // Render "Next" button
+    if (current_page < total_page) {
+        let next = document.createElement("button");
+        next.classList.add("next");
+        next.innerHTML = '<i class="fa-solid fa-forward"></i>';
+        next.classList.add("next");
+        next.addEventListener("click", nextPage);
+        paginationContainer.appendChild(next);
+    }
+}
+
+function previousPage() {
+    if (current_page > 1) {
+        current_page--;
+        Search_Images(userinput);
+    }
+}
+
+function nextPage() {
+    if (current_page < total_page) {
+        current_page++;
+        Search_Images(userinput);
+    }
+}
+
+
 Search.addEventListener("click",(e)=>{
     e.preventDefault()
     let input_data=input.value;
     Search_Images(input_data);
-    loadmore=true;
+    
 });
 function downloadImage(imageUrl) {
     // Create a temporary anchor element

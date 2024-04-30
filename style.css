@@ -39,6 +39,9 @@ input::placeholder{
     color: rgb(3, 3, 42);
     font-size: 13px;
 }
+input:focus{
+    outline:none;
+}
 button{
     width: 100px;
     height: 30px;
@@ -49,6 +52,10 @@ button{
     background-color: #fff;
 
 }
+/* button:hover{
+    color:white;
+    background-color:rgb(3, 3, 42) ;
+} */
 .images{
     margin-top:20px;
     width: 80%;
@@ -88,6 +95,7 @@ p{
     width: 75px;
     margin:10px;
     font-size: 10px;
+    font-weight: 700;
 
 }
 .hoverbutton:hover{
@@ -101,6 +109,13 @@ p{
 .imagediv.hovered .buttondiv {
     display: block; /* Show the buttons when hovering over imagediv */
 }
-.Loadmore{
-    display: none;
+.prev , .next{
+    margin:20px;
+    width: 60px;
+    font-size: 20px;
+    background-color: #a99797;
 }
+.prev:hover , .next:hover{
+    background-color:rgb(87, 67, 67);
+}
+
