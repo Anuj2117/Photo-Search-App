@@ -1,0 +1,106 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+body{
+    background-image: url(download.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#headding-section{
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+h1{
+    color: white;
+    font-size: 38px;
+    font-weight: 900;
+}
+
+input{
+    width: 300px;
+    height: 30px;
+    margin-top:15px;
+    padding:10px;
+    border: none;
+    border-radius: 10px;
+}
+input::placeholder{
+    color: rgb(3, 3, 42);
+    font-size: 13px;
+}
+button{
+    width: 100px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    color:black;
+    font-size: 15px;
+    background-color: #fff;
+
+}
+.images{
+    margin-top:20px;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    
+    
+}
+.imagediv{
+    height: 380px;
+    background-color: rgb(177, 154, 154);
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 20px;
+}
+img{
+    height: 220px;
+    width: 220px;
+    margin:10px;
+    border-radius: 10px;
+}
+p{
+    width: 210px ;
+    height: 50px;
+    text-align: center;
+    color: rgb(40, 4, 40);
+}
+.buttondiv{
+    
+    margin:8px;
+}
+.hoverbutton{
+    width: 75px;
+    margin:10px;
+    font-size: 10px;
+
+}
+.hoverbutton:hover{
+    color: white;
+    background-color:rgb(40, 4, 40);
+}
+.buttondiv {
+    display: none; /* Initially hide the buttons */
+}
+
+.imagediv.hovered .buttondiv {
+    display: block; /* Show the buttons when hovering over imagediv */
+}
+.Loadmore{
+    display: none;
+}
